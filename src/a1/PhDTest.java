@@ -10,8 +10,7 @@ class PhDTest {
 	void testA() {
 		PhD p1 = new PhD("Alex John", 2005, 7);
 		assertEquals("Alex John", p1.name());
-		assertEquals(2005, p1.year());
-		assertEquals(7, p1.month());
+		assertEquals("7/2005", p1.date());
 	}
 	
 	@Test
