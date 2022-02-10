@@ -26,14 +26,13 @@ public class PhD {
 	private int numAdvisees;
 	
 	/**
-	 * Constructor: an instance with name n, PhD year y, and PhD month m.<br>
-	 * The advisors are unknown, and there are 0 advisees.<br>
+	 * Constructor: an instance with name n, PhD year y, and PhD month m.
+	 * The advisors are unknown, and there are 0 advisees.
 	 * Precondition: n has at least 2 chars, and m is in 1..12.
 	 */
 	public PhD(String n, int y, int m) {
 		assert n.length()>=2;
 		assert m>=1 && m<=12;
-		assert y>=0;
 		name = n;
 		year = y;
 		month = m;
@@ -42,57 +41,59 @@ public class PhD {
 		numAdvisees = 0;
 	}
 	
-	public String name() {
 	/**
-	 * 
+	 * Return the name of this person.
 	 */
+	public String name() {
 		return name;
 	}
 	
-	public String date() {
-	/**
-	 * 
+	/** Return the date this person got their PhD in the form
+	 * "month/<year>"
+	 * E.g. For February 2022, return "2/2022". 
 	 */
+	public String date() {
 		return String.valueOf(month)+"/"+String.valueOf(year);
 	}
 
-	public PhD advisor1() {
 	/**
-	 * 
+	 * Return the first advisor of this PhD (null if unknown)
 	 */
+	public PhD advisor1() {
 		return advisorOne;
 	}
 	
-	public PhD advisor2() {
 	/**
-	 * 
+	 * Return the second advisor of this PhD (null if unknown or non-existent).
 	 */
+	public PhD advisor2() {
 		return advisorTwo;
 	}
 	
-	public int advisees() {
 	/**
-	 * 
+	 * Return the number of PhD advisees of this person
 	 */
+	public int advisees() {
 		return numAdvisees;
 	}
 	
-	public void addAdvisor1(PhD p) {
 	/**
-	 * 
+	 * Add p as the first advisor of this person.
+	 * Precondition: the first advisor is unknown and p is not null.
 	 */
-		assert advisorOne==null && p!=null;
-		
+	public void addAdvisor1(PhD p) {
+		assert advisorOne==null && p!=null;	
 		advisorOne = p;
 		advisorOne.numAdvisees++;
 	}
 	
-	public void addAdvisor2(PhD p) {
 	/**
-	 * 
+	 * Add p as the second advisor of this PhD.
+	 * Precondition: The first advisor is known, the second advisor is unknown, p is
+	 * not null, and p is different from the first advisor
 	 */
+	public void addAdvisor2(PhD p) {
 		assert advisorOne!=null && advisorTwo==null && p!=null && p!=advisorOne; 
-		
 		advisorTwo = p;
 		advisorTwo.numAdvisees++;
 	}
