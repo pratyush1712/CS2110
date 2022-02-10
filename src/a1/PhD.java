@@ -75,6 +75,8 @@ public class PhD {
 	public boolean isSiblingOf(PhD p) {
 		assert p!=null;
 		
-		return advisorOne==p.advisorOne || advisorTwo==p.advisorTwo;
+		return (p.advisorOne!=null && advisorOne!=null && advisorOne==p.advisorOne) || 
+		(advisorTwo!=null && p.advisorTwo!=null 
+		&& advisorTwo==p.advisorTwo);
 	}
 }
