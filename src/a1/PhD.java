@@ -69,6 +69,7 @@ public class PhD {
 	}
 	
 	public boolean gotBefore(PhD p) {
+		assert p!=null;
 		return (p.year > year) || (p.year == year && p.month>month);
 	}
 	
