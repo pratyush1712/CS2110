@@ -44,13 +44,13 @@ public class PhD {
 	}
 	
 	public void addAdvisor1(PhD p) {
-		assert advisorOne==null and p!=null
+		assert advisorOne==null && p!=null
 		advisorOne = p;
 		advisorOne.numAdvisees++;
 	}
 	
 	public void addAdvisor2(PhD p) {
-		assert advisorOne!=null and advisorTwo==null and p!=null and p!=advisorOne 
+		assert advisorOne!=null && advisorTwo==null && p!=null && p!=advisorOne 
 		advisorTwo = p;
 		advisorTwo.numAdvisees++;
 	}
