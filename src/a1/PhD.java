@@ -7,17 +7,30 @@ package a1;
 
 
 public class PhD {
+	/** Name of the person with a PhD, a String of length > 1 */
 	private String name;
+	
+	/** Month the PhD was awarded. In range 1..12 with 1 being January, etc */
 	private int month;
+	
+	/** Year the PhD was awarded. Can be any integer */
 	private int year;
+	
+	/** The first PhD advisor of this person —null if unknown. */
 	private PhD advisorOne;
+	
+	/** The second advisor of this person —null if unknown or if the person has less than two advisors */
 	private PhD advisorTwo;
+	
+	/** The number of PhD advisees of this person */
 	private int numAdvisees;
 	
-	public PhD(String n, int y, int m) {
 	/**
-	 * 
+	 * Constructor: an instance with name n, PhD year y, and PhD month m.<br>
+	 * The advisors are unknown, and there are 0 advisees.<br>
+	 * Precondition: n has at least 2 chars, and m is in 1..12.
 	 */
+	public PhD(String n, int y, int m) {
 		assert n.length()>=2;
 		assert m>=1 && m<=12;
 		assert y>=0;
