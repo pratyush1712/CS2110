@@ -44,18 +44,25 @@ public class PhD {
 	}
 	
 	public void addAdvisor1(PhD p) {
-		assert advisorOne==null && p!=null
+		assert advisorOne==null && p!=null;
+		
 		advisorOne = p;
 		advisorOne.numAdvisees++;
 	}
 	
 	public void addAdvisor2(PhD p) {
-		assert advisorOne!=null && advisorTwo==null && p!=null && p!=advisorOne 
+		assert advisorOne!=null && advisorTwo==null && p!=null && p!=advisorOne; 
+		
 		advisorTwo = p;
 		advisorTwo.numAdvisees++;
 	}
 	
 	public PhD (String n, int y, int m, PhD p1, PhD p2) {
+		assert n.length()>=2;
+		assert m>=1 && m<=12;
+		assert p1!=null && p2!=null;
+		assert p1!=p2;
+		
 		this(n,y,m);
 		advisorOne = p1;
 		advisorTwo = p2;
@@ -66,6 +73,8 @@ public class PhD {
 	}
 	
 	public boolean isSiblingOf(PhD p) {
+		assert p!=null;
+		
 		return advisorOne==p.advisorOne || advisorTwo==p.advisorTwo;
 	}
 }
