@@ -15,6 +15,12 @@ public class PhD {
 	private int numAdvisees;
 	
 	public PhD(String n, int y, int m) {
+	/**
+	 * 
+	 */
+		assert n.length()>=2;
+		assert m>=1 && m<=12;
+		assert y>=0;
 		name = n;
 		year = y;
 		month = m;
@@ -24,26 +30,44 @@ public class PhD {
 	}
 	
 	public String name() {
+	/**
+	 * 
+	 */
 		return name;
 	}
 	
 	public String date() {
+	/**
+	 * 
+	 */
 		return String.valueOf(month)+"/"+String.valueOf(year);
 	}
 
 	public PhD advisor1() {
+	/**
+	 * 
+	 */
 		return advisorOne;
 	}
 	
 	public PhD advisor2() {
+	/**
+	 * 
+	 */
 		return advisorTwo;
 	}
 	
 	public int advisees() {
+	/**
+	 * 
+	 */
 		return numAdvisees;
 	}
 	
 	public void addAdvisor1(PhD p) {
+	/**
+	 * 
+	 */
 		assert advisorOne==null && p!=null;
 		
 		advisorOne = p;
@@ -51,6 +75,9 @@ public class PhD {
 	}
 	
 	public void addAdvisor2(PhD p) {
+	/**
+	 * 
+	 */
 		assert advisorOne!=null && advisorTwo==null && p!=null && p!=advisorOne; 
 		
 		advisorTwo = p;
@@ -58,22 +85,28 @@ public class PhD {
 	}
 	
 	public PhD (String n, int y, int m, PhD p1, PhD p2) {
-		assert n.length()>=2;
-		assert m>=1 && m<=12;
+	/**
+	 * 
+	 */
+		this(n,y,m);
 		assert p1!=null && p2!=null;
 		assert p1!=p2;
-		
-		this(n,y,m);
 		advisorOne = p1;
 		advisorTwo = p2;
 	}
 	
 	public boolean gotBefore(PhD p) {
+	/**
+	 * 
+	 */
 		assert p!=null;
 		return (p.year > year) || (p.year == year && p.month>month);
 	}
 	
 	public boolean isSiblingOf(PhD p) {
+	/**
+	 * 
+	 */
 		assert p!=null;
 		
 		return (p.advisorOne!=null && advisorOne!=null && advisorOne==p.advisorOne) || 
