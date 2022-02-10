@@ -8,22 +8,25 @@ class PhDTest {
 
 	@Test
 	void testA() {
-		fail("Not yet implemented");
+		PhD p1 = new PhD("Alex John", 2005, 7);
+		assertEquals("Alex John", p1.name());
+		assertEquals(2005, p1.year());
+		assertEquals(7, p1.month());
 	}
 	
 	@Test
 	void testB() {
-		fail("Not yet implemented");
+		
 	}
 	
 	@Test
 	void testC() {
-		fail("Not yet implemented");
+
 	}
 	
 	@Test
 	void testD() {
-		fail("Not yet implemented");
+		
 	}
 
 }
