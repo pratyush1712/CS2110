@@ -1,4 +1,4 @@
-package a1PhD;
+package a1;
 /** NetId: ps2245, as2839. Time spent: hh hours, mm minutes. <br>
  * What I thought about this assignment: <br>
  * Replace this with your comment, using as many lines as you want. */

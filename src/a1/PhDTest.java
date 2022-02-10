@@ -1,4 +1,4 @@
-package a1PhD;
+package a1;
 
 import static org.junit.jupiter.api.Assertions.*;
 
