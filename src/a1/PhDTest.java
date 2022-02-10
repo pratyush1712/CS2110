@@ -7,7 +7,22 @@ import org.junit.jupiter.api.Test;
 class PhDTest {
 
 	@Test
-	void test() {
+	void testA() {
+		fail("Not yet implemented");
+	}
+	
+	@Test
+	void testB() {
+		fail("Not yet implemented");
+	}
+	
+	@Test
+	void testC() {
+		fail("Not yet implemented");
+	}
+	
+	@Test
+	void testD() {
 		fail("Not yet implemented");
 	}
 
