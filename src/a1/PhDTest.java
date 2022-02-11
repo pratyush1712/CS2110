@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 class PhDTest {
 
 	@Test
-	void testGroupA() {
+	void testConstructor1() {
 		PhD p1 = new PhD("Alex John", 2005, 7);
 		assertEquals("Alex John", p1.name());
 		assertEquals("7/2005", p1.date());
@@ -17,7 +17,7 @@ class PhDTest {
 	}
 	
 	@Test
-	void testGroupB() {
+	void testMutators() {
 		PhD p1 = new PhD("Alex John", 2005, 7);
 		PhD p2 = new PhD("Tim Boseman", 1985, 7);
 		PhD p3 = new PhD("Alex Shaun", 1994, 10);
@@ -30,7 +30,7 @@ class PhDTest {
 	}
 	
 	@Test
-	void testGroupC() {
+	void testConstructor2() {
 		PhD p2 = new PhD("Tim Boseman", 1985, 7);
 		PhD p3 = new PhD("Alex John", 1994, 10);
 		PhD p1 = new PhD("Alex Shaun", 2005, 7, p3, p2);
