@@ -26,14 +26,13 @@ public class PhD {
 	private int numAdvisees;
 	
 	/**
-	 * Constructor: an instance with name n, PhD year y, and PhD month m.<br>
-	 * The advisors are unknown, and there are 0 advisees.<br>
+	 * Constructor: an instance with name n, PhD year y, and PhD month m.
+	 * The advisors are unknown, and there are 0 advisees.
 	 * Precondition: n has at least 2 chars, and m is in 1..12.
 	 */
 	public PhD(String n, int y, int m) {
 		assert n.length()>=2;
 		assert m>=1 && m<=12;
-		assert y>=0;
 		name = n;
 		year = y;
 		month = m;
