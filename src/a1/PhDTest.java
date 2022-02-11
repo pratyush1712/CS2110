@@ -34,6 +34,8 @@ class PhDTest {
 		PhD p2 = new PhD("Tim Boseman", 1985, 7);
 		PhD p3 = new PhD("Alex John", 1994, 10);
 		PhD p1 = new PhD("Alex Shaun", 2005, 7, p3, p2);
+		assertEquals("Alex Shaun", p1.name());
+		assertEquals("7/2005", p1.date());
 		assertEquals(p2, p1.advisor2());
 		assertEquals(p3, p1.advisor1());
 		assertEquals(1, p2.advisees());
