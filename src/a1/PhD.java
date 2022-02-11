@@ -42,88 +42,93 @@ public class PhD {
 		numAdvisees = 0;
 	}
 	
-	public String name() {
 	/**
-	 * 
+	 *  Return the name of this person.
 	 */
+	public String name() {
 		return name;
 	}
 	
-	public String date() {
 	/**
-	 * 
+	 * Return the date this person got their PhD in the form "month/<year>"
+	 * E.g. For February 2022, return "2/2022"
 	 */
+	public String date() {
 		return String.valueOf(month)+"/"+String.valueOf(year);
 	}
 
-	public PhD advisor1() {
 	/**
-	 * 
+	 * Return the first advisor of this PhD (null if unknown).
 	 */
+	public PhD advisor1() {
 		return advisorOne;
 	}
 	
-	public PhD advisor2() {
 	/**
-	 * 
+	 * Return the second advisor of this PhD (null if unknown or non-existent).
 	 */
+	public PhD advisor2() {
 		return advisorTwo;
 	}
 	
-	public int advisees() {
 	/**
-	 * 
+	 * Return the number of PhD advisees of this person.
 	 */
+	public int advisees() {
 		return numAdvisees;
 	}
 	
-	public void addAdvisor1(PhD p) {
 	/**
-	 * 
+	 * Add p as the first advisor of this person.
+	 * Precondition: the first advisor is unknown and p is not null.
 	 */
+	public void addAdvisor1(PhD p) {
 		assert advisorOne==null && p!=null;
-		
 		advisorOne = p;
 		advisorOne.numAdvisees++;
 	}
 	
-	public void addAdvisor2(PhD p) {
 	/**
-	 * 
+	 * Add p as the second advisor of this person.
+	 * Precondition: The first advisor is known, the second advisor is unknown, p is not null, and p is different from the first advisor.
 	 */
-		assert advisorOne!=null && advisorTwo==null && p!=null && p!=advisorOne; 
-		
+	public void addAdvisor2(PhD p) {
+		assert advisorOne!=null && advisorTwo==null && p!=null && p!=advisorOne; 	
 		advisorTwo = p;
 		advisorTwo.numAdvisees++;
 	}
 	
-	public PhD (String n, int y, int m, PhD p1, PhD p2) {
 	/**
-	 * 
+	 * Constructor: a PhD with name n, PhD year y, PhD month m, first advisor p1, and second advisor p2.
+	 * Precondition: n has at least 2 chars, m is in 1..12, p1 and p2 are not null, and p1 and p2 are different.
 	 */
+	public PhD (String n, int y, int m, PhD p1, PhD p2) {
 		this(n,y,m);
 		assert p1!=null && p2!=null;
 		assert p1!=p2;
 		advisorOne = p1;
 		advisorTwo = p2;
+		advisorOne.numAdvisees++;
+		advisorTwo.numAdvisees++;
 	}
 	
-	public boolean gotBefore(PhD p) {
 	/**
-	 * 
+	 * Return value of: "p is not null and this PhD got the PhD before p"
 	 */
+	public boolean gotBefore(PhD p) {
 		assert p!=null;
 		return (p.year > year) || (p.year == year && p.month>month);
 	}
 	
-	public boolean isSiblingOf(PhD p) {
 	/**
-	 * 
+	 * Return value of: "this PhD is an intellectual sibling of p".
+	 * Precondition: p is not null.
 	 */
-		assert p!=null;
-		
-		return (p.advisorOne!=null && advisorOne!=null && advisorOne==p.advisorOne) || 
-		(advisorTwo!=null && p.advisorTwo!=null 
-		&& advisorTwo==p.advisorTwo);
+	public boolean isSiblingOf(PhD p) {
+		assert p!=null;	
+		return (this != p) && ((p.advisor1()!=null && advisorOne!=null && advisorOne==p.advisor1()) || 
+		(advisorTwo!=null && p.advisor2()!=null && advisorTwo==p.advisor2()) ||
+		(advisorOne!=null && p.advisor2()!=null && advisorOne==p.advisor2()) ||
+		(advisorTwo!=null && p.advisor1()!=null && advisorTwo==p.advisor1()));
 	}
 }
