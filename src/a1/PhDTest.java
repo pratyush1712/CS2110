@@ -26,7 +26,7 @@ class PhDTest {
 		assertEquals(1, p2.advisees());
 		p1.addAdvisor2(p3);
 		assertEquals(p3, p1.advisor2());
-		assertEquals(1, p3.advisor1());
+		assertEquals(1, p3.advisees());
 	}
 	
 	@Test
