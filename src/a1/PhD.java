@@ -32,7 +32,9 @@ public class PhD {
 	 */
 	public PhD(String n, int y, int m) {
 		assert n.length()>=2;
-		assert m>=1 && m<=12;
+		assert m>=1;
+		assert m<=12;
+		
 		name = n;
 		year = y;
 		month = m;
@@ -82,7 +84,9 @@ public class PhD {
 	 * Precondition: the first advisor is unknown and p is not null.
 	 */
 	public void addAdvisor1(PhD p) {
-		assert advisorOne==null && p!=null;
+		assert advisorOne==null;
+		assert p!=null;
+		
 		advisorOne = p;
 		advisorOne.numAdvisees++;
 	}
@@ -92,7 +96,11 @@ public class PhD {
 	 * Precondition: The first advisor is known, the second advisor is unknown, p is not null, and p is different from the first advisor.
 	 */
 	public void addAdvisor2(PhD p) {
-		assert advisorOne!=null && advisorTwo==null && p!=null && p!=advisorOne; 	
+		assert advisorOne!=null;
+		assert advisorTwo==null;
+		assert p!=null;
+		assert p!=advisorOne; 	
+		
 		advisorTwo = p;
 		advisorTwo.numAdvisees++;
 	}
@@ -103,8 +111,10 @@ public class PhD {
 	 */
 	public PhD (String n, int y, int m, PhD p1, PhD p2) {
 		this(n,y,m);
-		assert p1!=null && p2!=null;
+		assert p1!=null;
+		assert p2!=null;
 		assert p1!=p2;
+		
 		advisorOne = p1;
 		advisorTwo = p2;
 		advisorOne.numAdvisees++;
@@ -116,6 +126,7 @@ public class PhD {
 	 */
 	public boolean gotBefore(PhD p) {
 		assert p!=null;
+		
 		return (p.year > year) || (p.year == year && p.month>month);
 	}
 	
@@ -125,6 +136,7 @@ public class PhD {
 	 */
 	public boolean isSiblingOf(PhD p) {
 		assert p!=null;	
+		
 		return (this != p) && ((p.advisor1()!=null && advisorOne!=null && advisorOne==p.advisor1()) || 
 		(advisorTwo!=null && p.advisor2()!=null && advisorTwo==p.advisor2()) ||
 		(advisorOne!=null && p.advisor2()!=null && advisorOne==p.advisor2()) ||
