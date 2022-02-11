@@ -54,5 +54,11 @@ class PhDTest {
 		
 	}
 	
+	
+	@Test
+	void testAssertStatements() {
+		
+		
+	}
 
 }
