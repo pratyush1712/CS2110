@@ -7,7 +7,7 @@ package a1;
  /** An instance maintains info about the PhD of a person. */
 
 
-public class PhD {
+public class PhD {}
 	/** Name of the person with a PhD, a String of length > 1 */
 	private String name;
 	
@@ -34,7 +34,7 @@ public class PhD {
 	public PhD(String n, int y, int m) {
 		assert n.length()>=2;
 		assert m>=1 && m<=12;
-		
+		int g=2;
 		name = n;
 		year = y;
 		month = m;
