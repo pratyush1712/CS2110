@@ -36,15 +36,16 @@ class PhDTest {
 		assertEquals(p3, p1.advisor2());
 		assertEquals(1, p3.advisees());
 		assertEquals(0, p1.advisees());
+		p2.addAdvisor1(p3);
 		
 		//testing assert statements for Group B
 		PhD p4 = new PhD("Alex Smith", 1950, 11);
 		assertThrows(AssertionError.class, () -> {p1.addAdvisor1(p4);});
 		assertThrows(AssertionError.class, () -> {p2.addAdvisor1(null);});
 		assertThrows(AssertionError.class, () -> {p3.addAdvisor2(p4);});
-		assertThrows(AssertionError.class, () -> {p.addAdvisor1(p4);});
-
-
+		assertThrows(AssertionError.class, () -> {p1.addAdvisor2(p4);});
+		assertThrows(AssertionError.class, () -> {p2.addAdvisor2(null);});
+		assertThrows(AssertionError.class, () -> {p2.addAdvisor2(p3);});
 
 	}
 	
@@ -60,6 +61,12 @@ class PhDTest {
 		assertEquals(1, p2.advisees());
 		assertEquals(1, p3.advisees());
 		
+	        //testing assert statements for Group C
+		assertThrows(AssertionError.class, () -> {new PhD(null, 1972, 7, );});
+		assertThrows(AssertionError.class, () -> {new PhD("", 1972, 7);});
+		assertThrows(AssertionError.class, () -> {new PhD("Alex John", 1972, 0);});
+		assertThrows(AssertionError.class, () -> {new PhD("Alex John", 1972, 15);});
+		
 		
 	}
 	
@@ -69,21 +76,4 @@ class PhDTest {
 	}
 	
 	
-	@Test
-	void testAssertStatements() {
-		
-		//testing assert statements for Group A
-		assertThrows(AssertionError.class, () -> {new PhD(null, 1972, 7);});
-		assertThrows(AssertionError.class, () -> {new PhD("", 1972, 7);});
-		assertThrows(AssertionError.class, () -> {new PhD("Alex John", 1972, 0);});
-		assertThrows(AssertionError.class, () -> {new PhD("Alex John", 1972, 15);});
-		
-		//testing assert statements for Group B
-		assertThrows(AssertionError.class, () -> {
-			PhD p1 = new PhD("Timothy Smith", 1980, 7);
-			p1.addAdvisor1(null);
-		});
-		
-	}
-
 }
