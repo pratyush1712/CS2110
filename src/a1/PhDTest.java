@@ -73,7 +73,26 @@ class PhDTest {
 	}
 	
 	@Test
-	void testGroupD() {
+	void testD() {
+		// tests for gotBefore
+		PhD April2020 = new PhD("April2020", 2020, 4);
+		PhD April20201 = new PhD("April20201", 2020, 4);
+		assertEquals(false, April2020.gotBefore(April20201));
+		assertEquals(false, April2020.gotBefore(April2020));
+		PhD April2021 = new PhD("April2021", 2021, 4);
+		assertEquals(true, April2020.gotBefore(April2021));
+		assertEquals(false, April2021.gotBefore(April2020));
+		PhD May2021 = new PhD("May2021", 2021, 5);
+		assertEquals(true, April2021.gotBefore(May2021));
+		assertEquals(false, May2021.gotBefore(April2021));
+		PhD Jan2022 = new PhD("Jan2022", 2022, 1);
+		assertEquals(false, Jan2022.gotBefore(April2021));
+		assertEquals(true, April2021.gotBefore(Jan2022));
+		PhD Dec1980 = new PhD("Dec1980", 1980, 12);
+		assertEquals(false, April2021.gotBefore(Dec1980));
+		assertEquals(true, Dec1980.gotBefore(April2021));
+		
+		// tests for 
 		
 	}
 	
