@@ -1,7 +1,8 @@
 package a1;
-/** NetId: ps2245, as2839. Time spent: hh hours, mm minutes. <br>
+/** NetId: ps2245, as2839. Time spent: 6 hours, 0 minutes. <br>
  * What I thought about this assignment: <br>
- * Replace this with your comment, using as many lines as you want. */
+ * This assignment was a useful introduction to 2110, and enabled us to practice 
+ * some basics of programming without venturing too far into the nuances of Java.*/
 
  /** An instance maintains info about the PhD of a person. */
 
@@ -32,15 +33,16 @@ public class PhD {
 	 */
 	public PhD(String n, int y, int m) {
 		assert n.length()>=2;
-		assert m>=1;
-		assert m<=12;
+		assert m>=1 && m<=12;
 		
 		name = n;
 		year = y;
 		month = m;
 		advisorOne = null;
 		advisorTwo = null;
-		numAdvisees = 0;
+	    numAdvisees = 0;
+
+		 
 	}
 	
 	/**
@@ -124,10 +126,8 @@ public class PhD {
 	/**
 	 * Return value of: "p is not null and this PhD got the PhD before p"
 	 */
-	public boolean gotBefore(PhD p) {
-		assert p!=null;
-		
-		return (p.year > year) || (p.year == year && p.month>month);
+	public boolean gotBefore(PhD p) {		
+		return (p!=null) && ((p.year > year) || (p.year == year && p.month>month));
 	}
 	
 	/**
