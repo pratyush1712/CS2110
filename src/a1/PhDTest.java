@@ -95,7 +95,10 @@ class PhDTest {
 		// tests for 
 		
 		//testing assert statements for Group D
-		
+		PhD p1 = new PhD("Alex John", 2005, 7);
+		assertThrows(AssertionError.class, () -> {p1.gotBefore(null);});
+		assertThrows(AssertionError.class, () -> {p1.isSiblingOf(null);});
+
 	}
 	
 	
