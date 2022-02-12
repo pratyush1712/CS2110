@@ -143,3 +143,15 @@ public class PhD {
 		(advisorTwo!=null && p.advisor1()!=null && advisorTwo==p.advisor1()));
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
