@@ -72,18 +72,18 @@ public class A3 {
         // Principle: Avoid the same expression in several places.
         // Principle: Keep the structure of the method as simple as possible.
 
-        if s.length()%2!=0 {
+        if (s.length()%2!=0) {
             return true; 
             }
         
-        else if s.length()%2==0 {
-            if s=="" {
+        else if (s.length()%2==0) {
+            if (s=="") {
                 return true;
                 }
             else {
                 char mid1 = s.charAt((s.length()/2)-1);
                 char mid2 = s.charAt(s.length()/2);
-                if mid1==mid2 {
+                if (mid1==mid2) {
                     return true;
                     }
                 else {
