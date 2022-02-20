@@ -47,6 +47,8 @@ public class A3 {
      * Example: for 5 hours, use 5 or 5.0 */
     public static double timeSpent= -1;
 
+    import java.util.Arrays;
+    
     /** Return true iff the middle characters of s are the same. <br>
      * Note: If s has an odd number of chars, there is ONE middle char, so return true.<br>
      * If s is "", return true.<br>
@@ -205,7 +207,16 @@ public class A3 {
          * need to first convert the string into an array of characters and then
          * use methods in class Arrays. */
 
-        return false;
+        char[] array1 = s.toCharArray();
+        char[] array2 = t.toCharArray();
+        
+        Arrays.sort(array1);
+        Arrays.sort(array2);
+            
+        return (Arrays.equals(array1, array2));
+
+        
+        
     }
 
     // TODO 7
