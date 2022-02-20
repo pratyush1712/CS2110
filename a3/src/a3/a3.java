@@ -71,27 +71,9 @@ public class A3 {
         // Principle: Avoid unnecessary case analysis
         // Principle: Avoid the same expression in several places.
         // Principle: Keep the structure of the method as simple as possible.
-
-        if (s.length()%2!=0) {
-            return true; 
-            }
-        
-        else if (s.length()%2==0) {
-            if (s=="") {
-                return true;
-                }
-            else {
-                char mid1 = s.charAt((s.length()/2)-1);
-                char mid2 = s.charAt(s.length()/2);
-                if (mid1==mid2) {
-                    return true;
-                    }
-                else {
-                    return false;
-                    }
-            }
+        return (s.length() % 2 == 0 && s.length()>0) ? (s.charAt(s.length()/2-1)==s.charAt(s.length()/2) ? true:false):true;
     }
-
+        
     /** Surround the letters in 'a'..'z' by the corresponding capital. <br>
      * That is: Return a copy of s changed as indicated above. <br>
      * Examples: <br>
