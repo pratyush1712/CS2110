@@ -169,7 +169,10 @@ public class A3 {
         // then about 9996 tests may have to be made in the worst case. So don't
         // have the same method call executed several times.
 
-        throw new UnsupportedOperationException();
+        int first = s.indexOf(t);
+        int last = s.lastIndexOf(t);
+        
+        return !(first==last);
     }
 
     /** s consists of a nonblank character followed by a digit k (say) in 0..9. <br>
