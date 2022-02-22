@@ -5,6 +5,11 @@ import java.util.Arrays;
 import org.junit.platform.commons.util.StringUtils;
 import static org.apache.commons.lang.StringUtils;
 
+/* NetIds: as2839, ps2245.
+ * What I thought about this assignment:
+ * This assignment enabled us to practice looking up the relevant methods from the Java API documentation. This will surely help us in future programming.
+ *  */
+
 /** A collection of static functions manipulating strings. <br>
  * All methods assume that String parameters are non-null.
  *
