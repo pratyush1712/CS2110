@@ -207,7 +207,13 @@ public class A3 {
         // Don't use unnecessary case analysis --a solution needs no if-statements
         // or conditional expressions.
 
+        String new = s.trim();
+        char repeat = new.charAt(0);
         
+        int numRep = Character.getNumericalValue(new.charAt(1));
+        
+        final = Character.toString(repeat).repeat(numRep);
+        return final;
     }
 
     /** Return true iff s and t are anagrams.<br>
