@@ -1,10 +1,9 @@
 package a3;
 
-/* NetIds: ps2245, as2839.
- * What I thought about this assignment:
- *
- *
- *  */
+import java.util.Arrays;
+
+import org.junit.platform.commons.util.StringUtils;
+import static org.apache.commons.lang.StringUtils;
 
 /** A collection of static functions manipulating strings. <br>
  * All methods assume that String parameters are non-null.
@@ -47,8 +46,6 @@ public class A3 {
      * Example: for 5 hours, use 5 or 5.0 */
     public static double timeSpent= -1;
 
-    import java.util.Arrays;
-    
     /** Return true iff the middle characters of s are the same. <br>
      * Note: If s has an odd number of chars, there is ONE middle char, so return true.<br>
      * If s is "", return true.<br>
@@ -73,9 +70,11 @@ public class A3 {
         // Principle: Avoid unnecessary case analysis
         // Principle: Avoid the same expression in several places.
         // Principle: Keep the structure of the method as simple as possible.
-        return (s.length() % 2 == 0 && s.length()>0) ? (s.charAt(s.length()/2-1)==s.charAt(s.length()/2) ? true:false):true;
+        return (s.length() % 2 == 0 && s.length() > 0) ?
+            (s.charAt(s.length() / 2 - 1) == s.charAt(s.length() / 2) ? true : false) :
+            true;
     }
-        
+
     /** Surround the letters in 'a'..'z' by the corresponding capital. <br>
      * That is: Return a copy of s changed as indicated above. <br>
      * Examples: <br>
@@ -116,8 +115,16 @@ public class A3 {
          * For example, the internal representation of 'a' is 97, but do NOT
          * use magic number 97 in the method body; instead, use 'a'.
          */
-
-        throw new UnsupportedOperationException();
+        String copy= "";
+        for (int i= 0; i < s.length(); i++ ) {
+            if (s.charAt(i) <= 'z' && s.charAt(i) >= 'a') {
+                copy= copy + Character.toUpperCase(s.charAt(i)) + s.charAt(i) +
+                    Character.toUpperCase(s.charAt(i));
+            } else {
+                copy+= s.charAt(i);
+            }
+        }
+        return copy;
     }
 
     /** Return s but with all letters in 'A'..'Z' moved to the front, <br>
@@ -139,8 +146,17 @@ public class A3 {
         // In this method, you must use StringBuilder twice, once to contain
         // the non-capital letters and once to contain all the capitals, to
         // be placed at the front when done.
-
-        throw new UnsupportedOperationException();
+        String capitals= "";
+        String nonCapitals= "";
+        for (int i= 0; i < s.length(); i++ ) {
+            if (s.charAt(i) >= 'A' && s.charAt(i) <= 'Z') {
+                capitals+= s.charAt(i);
+            } else {
+                nonCapitals+= s.charAt(i);
+            }
+        }
+        s= capitals + nonCapitals;
+        return s;
     }
 
     /** Precondition: s and t are not null. <br>
@@ -168,18 +184,13 @@ public class A3 {
         // length of string s. If s contains 1,000 characters and s1 contains 5 chars,
         // then about 9996 tests may have to be made in the worst case. So don't
         // have the same method call executed several times.
+        if (s.contains(t) == true) {
+            int first= s.indexOf(t);
+            int last= s.lastIndexOf(t);
 
-        if (s.contains(t)==true) {
-            int first = s.indexOf(t);
-            int last = s.lastIndexOf(t);
-        
-            return !(first==last);
+            return !(first == last);
         }
-        
-        else {
-            return false;
-        }
-      
+        return false;
     }
 
     /** s consists of a nonblank character followed by a digit k (say) in 0..9. <br>
@@ -196,7 +207,7 @@ public class A3 {
         // Don't use unnecessary case analysis --a solution needs no if-statements
         // or conditional expressions.
 
-        throw new UnsupportedOperationException();
+        
     }
 
     /** Return true iff s and t are anagrams.<br>
@@ -217,16 +228,14 @@ public class A3 {
          * need to first convert the string into an array of characters and then
          * use methods in class Arrays. */
 
-        char[] array1 = s.toCharArray();
-        char[] array2 = t.toCharArray();
-        
+        char[] array1= s.toCharArray();
+        char[] array2= t.toCharArray();
+
         Arrays.sort(array1);
         Arrays.sort(array2);
-            
+
         return (Arrays.equals(array1, array2));
 
-        
-        
     }
 
     // TODO 7
