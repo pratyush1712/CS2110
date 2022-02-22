@@ -146,17 +146,16 @@ public class A3 {
         // In this method, you must use StringBuilder twice, once to contain
         // the non-capital letters and once to contain all the capitals, to
         // be placed at the front when done.
-        String capitals= "";
-        String nonCapitals= "";
+        StringBuilder capitals = new StringBuilder("");
+        StringBuilder nonCapitals= new StringBuilder("");
         for (int i= 0; i < s.length(); i++ ) {
             if (s.charAt(i) >= 'A' && s.charAt(i) <= 'Z') {
-                capitals+= s.charAt(i);
+                capitals.append(s.charAt(i));
             } else {
-                nonCapitals+= s.charAt(i);
+                nonCapitals.append(s.charAt(i));
             }
         }
-        s= capitals + nonCapitals;
-        return s;
+        return (capitals.toString() + nonCapitals.toString());
     }
 
     /** Precondition: s and t are not null. <br>
@@ -207,13 +206,12 @@ public class A3 {
         // Don't use unnecessary case analysis --a solution needs no if-statements
         // or conditional expressions.
 
-        String new = s.trim();
-        char repeat = new.charAt(0);
+        String n = s.trim();
+        char repeat = n.charAt(0);
         
-        int numRep = Character.getNumericalValue(new.charAt(1));
+        int numRep = Character.getNumericValue(n.charAt(1));
         
-        final = Character.toString(repeat).repeat(numRep);
-        return final;
+        return Character.toString(repeat).repeat(numRep);
     }
 
     /** Return true iff s and t are anagrams.<br>
