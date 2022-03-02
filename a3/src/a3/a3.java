@@ -2,9 +2,6 @@ package a3;
 
 import java.util.Arrays;
 
-import org.junit.platform.commons.util.StringUtils;
-import static org.apache.commons.lang.StringUtils;
-
 /* NetIds: as2839, ps2245.
  * What I thought about this assignment:
  * This assignment enabled us to practice looking up the relevant methods from the Java API documentation. This will surely help us in future programming.
@@ -151,7 +148,7 @@ public class A3 {
         // In this method, you must use StringBuilder twice, once to contain
         // the non-capital letters and once to contain all the capitals, to
         // be placed at the front when done.
-        StringBuilder capitals = new StringBuilder("");
+        StringBuilder capitals= new StringBuilder("");
         StringBuilder nonCapitals= new StringBuilder("");
         for (int i= 0; i < s.length(); i++ ) {
             if (s.charAt(i) >= 'A' && s.charAt(i) <= 'Z') {
@@ -211,11 +208,11 @@ public class A3 {
         // Don't use unnecessary case analysis --a solution needs no if-statements
         // or conditional expressions.
 
-        String n = s.trim();
-        char repeat = n.charAt(0);
-        
-        int numRep = Character.getNumericValue(n.charAt(1));
-        
+        String n= s.trim();
+        char repeat= n.charAt(0);
+
+        int numRep= Character.getNumericValue(n.charAt(1));
+
         return Character.toString(repeat).repeat(numRep);
     }
 
