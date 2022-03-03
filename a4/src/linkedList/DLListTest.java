@@ -89,7 +89,7 @@ class DLListTest {
 		dl.append("howdy");
 		dl.append("howzat");
 		dl.append("wassup");
-        dl.append("hey");
+                dl.append("hey");
 
 		assertEquals("[hi, howdy, howzat, wassup, hey]", dl.toStringRev());
 		assertEquals(5, dl.size());
@@ -110,7 +110,7 @@ class DLListTest {
 		DList<String>.Node x5 = dl.node(dl.size()-1);
 		dl.delete(x5);
 		assertEquals("[howzat, wassup]", dl.toStringRev());
-        DList<String>.Node x6 = dl.node(dl.size()-1);
+                DList<String>.Node x6 = dl.node(dl.size()-1);
 		assertEquals("wassup", x6.value());
         
     }
