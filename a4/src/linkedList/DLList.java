@@ -121,7 +121,7 @@ public class DLList<E> {
             Node nOne= new Node(null, v, head);
             head.prev= nOne;
             head= nOne;
-            size++;
+            size++ ;
         }
     }
 
@@ -133,16 +133,16 @@ public class DLList<E> {
         // For example, if k < size/2, search from the beginning of the
         // list, otherwise search from the end of the list. If k = size/2,
         // search from either end; it doesn't matter.
-        if (k <= size / 2) {
-            var node = head;
+        if (k < size / 2) {
+            var node= head;
             for (int i= 0; i < k; i++ ) {
-                node = node.next;
+                node= node.next;
             }
             return node;
         }
-        var node = tail;
-        for (int i = 0; i < (size - k); i++ ) {
-            node = node.prev;
+        var node= tail;
+        for (int i= 0; i < (size - k-1); i++ ) {
+            node= node.prev;
         }
         return node;
     }
@@ -150,14 +150,21 @@ public class DLList<E> {
     /** Insert value v in a new node after node n. <br>
      * This operation takes constant time. <br>
      * Precondition: n must be a node of this list; it may not be null.<br>
-     * E.g. if the list is [3, 8, 2] and n points to the node with 8 in it, <br>
+     * E.g. if the list is [3, 8, 2] and n points to the node with 3 in it, <br>
      * and v is 1, the list is changed to [3, 1, 8, 2] */
-    public void insertBefore(Node n, E v) {
+    public void insertAfter(Node n, E v) {
         // TODO 5. Make sure this method takes constant time.
-        Node nOne= new Node(n.prev, v, n);
-        (n.prev).next= nOne;
-        n.prev= nOne;
-        size++;
+        if (n != tail) {
+            Node nOne= new Node(n, v, n.next);
+            n.next = nOne;
+            (nOne.next).prev = nOne;
+            size++ ;
+        } else {
+            Node nOne= new Node(tail, v, null);
+            tail.next= nOne;
+            tail= nOne;
+            size++ ;
+        }
     }
 
     /** Remove node n from this list. <br>
