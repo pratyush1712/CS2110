@@ -155,7 +155,8 @@ public class DLList<E> {
      * and v is 1, the list is changed to [3, 1, 8, 2] */
     public void insertAfter(Node n, E v) {
         // TODO 5. Make sure this method takes constant time.
- 
+        assert n != null;
+        
         if (n != tail) {
             Node nOne= new Node(n, v, n.next);
             n.next = nOne;
