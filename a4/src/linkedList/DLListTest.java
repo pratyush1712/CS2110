@@ -56,7 +56,7 @@ class DLListTest {
     }
 
     @Test
-    public void testInsertBefore() {
+    public void testInsertAfter() {
         DLList<String> dl= new DLList<String>();
         dl.append("2110");
         dl.append("2800");
@@ -75,6 +75,12 @@ class DLListTest {
         assertEquals("[3, 1, 8, 2]", dll.toString());
         assertEquals("[2, 8, 1, 3]", dll.toStringRev());
         assertEquals(4, dll.size());
+    }
+    
+    @Test
+    public void testDelete() {
+        DLList<String> dl= new DLList<String>();
+        
     }
 
 }
