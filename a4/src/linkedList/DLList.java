@@ -1,6 +1,6 @@
 package linkedList;
-/*  Name(s): Pratyush Sudhakar, Aditya Syam
- * Netid(s): ps2245, as2839
+/*  Name(s): Pratyush Sudhakar
+ * Netid(s): ps2245
  * What I thought about this assignment:
  *
  *
@@ -77,12 +77,12 @@ public class DLList<E> {
         // E is String and values are the empty string.
         // You can't test this fully until #2, append, is written.
 
-        var res = new StringBuilder("[");
-        var n = tail;
-        while (n!=null) {
+        var res= new StringBuilder("[");
+        var n= tail;
+        while (n != null) {
             res.append(n.val);
-            n = n.prev;
-            if (n!=null) res.append(", ");
+            n= n.prev;
+            if (n != null) res.append(", ");
         }
         return res + "]";
     }
@@ -94,16 +94,16 @@ public class DLList<E> {
         // TODO 2. After writing append, test append and toStringRev
         // thoroughly before starting on the next. These two must be correct
         // in order to be able to write and test all the others.
-        Node nOne = new Node(tail, v, null);
-        if (size==0) {
-            head = nOne;
-            tail = nOne;
-            size++;
-        }
-        else {
-            tail.next = nOne;
-            tail = nOne;
-            size++;
+        if (size == 0) {
+            Node nOne= new Node(null, v, null);
+            head= nOne;
+            tail= nOne;
+            size++ ;
+        } else {
+            Node nOne= new Node(tail, v, null);
+            tail.next= nOne;
+            tail= nOne;
+            size++ ;
         }
     }
 
@@ -112,9 +112,17 @@ public class DLList<E> {
      * E.g. if the list is [8, 7, 4], prepend(2) changes this list to [2, 8, 7, 4]. */
     public void prepend(E v) {
         // TODO 3. Write and test prepend thoroughly before moving on to TODO 4
-        Node nOne = new Node(null, v, head);
-        head.prev = nOne;
-        head = nOne;
+        if (size == 0) {
+            Node nOne= new Node(null, v, null);
+            head= nOne;
+            tail= nOne;
+            size++ ;
+        } else {
+            Node nOne= new Node(null, v, head);
+            head.prev= nOne;
+            head= nOne;
+            size++;
+        }
     }
 
     /** = node number k. <br>
@@ -125,15 +133,15 @@ public class DLList<E> {
         // For example, if k < size/2, search from the beginning of the
         // list, otherwise search from the end of the list. If k = size/2,
         // search from either end; it doesn't matter.
-        if (k <= size/2) {
+        if (k <= size / 2) {
             var node = head;
-            for (int i = 0; i <= k; i++) {
-                node=node.next;
+            for (int i= 0; i < k; i++ ) {
+                node = node.next;
             }
             return node;
         }
-        var node=tail;
-        for (int i = 0; i<(size-k);i++) {
+        var node = tail;
+        for (int i = 0; i < (size - k); i++ ) {
             node = node.prev;
         }
         return node;
@@ -146,9 +154,10 @@ public class DLList<E> {
      * and v is 1, the list is changed to [3, 1, 8, 2] */
     public void insertBefore(Node n, E v) {
         // TODO 5. Make sure this method takes constant time.
-        Node nOne = new Node(n.prev, v, n);
-        (n.prev).next = nOne;
-        n.prev = nOne;
+        Node nOne= new Node(n.prev, v, n);
+        (n.prev).next= nOne;
+        n.prev= nOne;
+        size++;
     }
 
     /** Remove node n from this list. <br>
@@ -159,8 +168,8 @@ public class DLList<E> {
     public void delete(Node n) {
         // TODO 6. Make sure this method takes constant time.
 
-        (n.prev).next = n.next;
-        (n.next).prev = n.prev;
+        (n.prev).next= n.next;
+        (n.next).prev= n.prev;
     }
 
     /*********************/
