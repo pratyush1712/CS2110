@@ -63,7 +63,7 @@ class DLListTest {
         dl.append("2220");
         dl.append("3360");
         dl.append("4999");
-        dl.insertBefore(dl.node(4), "syam math homework ho gaya?");
+        dl.insertAfter(dl.node(4), "syam math homework ho gaya?");
         assertEquals("[2110, 2800, 2220, 3360, 4999, syam math homework ho gaya?]", dl.toString());
         assertEquals("[syam math homework ho gaya?, 4999, 3360, 2220, 2800, 2110]", dl.toStringRev());
         assertEquals(6, dl.size());
@@ -71,7 +71,7 @@ class DLListTest {
         dll.append("3");
         dll.append("8");
         dll.append("2");
-        dll.insertBefore(dll.node(0), "1");
+        dll.insertAfter(dll.node(0), "1");
         assertEquals("[3, 1, 8, 2]", dll.toString());
         assertEquals("[2, 8, 1, 3]", dll.toStringRev());
         assertEquals(4, dll.size());
