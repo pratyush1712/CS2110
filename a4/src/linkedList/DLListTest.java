@@ -81,37 +81,37 @@ class DLListTest {
     public void testDelete() {
         DLList<String> dl= new DLList<String>();
         dl.prepend("hello");
-		DLList<String>.Node x = dl.node(0);
-		dl.delete(x);
-		assertEquals(0, dl.size());
+	DLList<String>.Node x = dl.node(0);
+	dl.delete(x);
+	assertEquals(0, dl.size());
 
-		dl.append("hi");
-		dl.append("howdy");
-		dl.append("howzat");
-		dl.append("wassup");
-                dl.append("hey");
+	dl.append("hi");
+	dl.append("howdy");
+	dl.append("howzat");
+	dl.append("wassup");
+        dl.append("hey");
 
-		assertEquals("[hi, howdy, howzat, wassup, hey]", dl.toStringRev());
-		assertEquals(5, dl.size());
+	assertEquals("[hi, howdy, howzat, wassup, hey]", dl.toStringRev());
+	assertEquals(5, dl.size());
 
-		DList<String>.Node x1 = dl.node(1);
-		dl.delete(x1);
+	DList<String>.Node x1 = dl.node(1);
+	dl.delete(x1);
         
-		DList<String>.Node x2 = dl.node(1);
-		assertEquals("[hi, howzat, wassup, hey]", dl.toStringRev());
-		assertEquals("howzat", x2.value());
+	DList<String>.Node x2 = dl.node(1);
+	assertEquals("[hi, howzat, wassup, hey]", dl.toStringRev());
+	assertEquals("howzat", x2.value());
         
-		DList<String>.Node x3 = dl.node(0);
-		dl.delete(x3);
-		assertEquals("[howzat, wassup, hey]", dl.toStringRev());
-		DList<String>.Node x4 = dl.node(0);
-		assertEquals("howzat", x4.value());
+	DList<String>.Node x3 = dl.node(0);
+	dl.delete(x3);
+	assertEquals("[howzat, wassup, hey]", dl.toStringRev());
+	DList<String>.Node x4 = dl.node(0);
+	assertEquals("howzat", x4.value());
 
-		DList<String>.Node x5 = dl.node(dl.size()-1);
-		dl.delete(x5);
-		assertEquals("[howzat, wassup]", dl.toStringRev());
-                DList<String>.Node x6 = dl.node(dl.size()-1);
-		assertEquals("wassup", x6.value());
+	DList<String>.Node x5 = dl.node(dl.size()-1);
+	dl.delete(x5);
+	assertEquals("[howzat, wassup]", dl.toStringRev());
+        DList<String>.Node x6 = dl.node(dl.size()-1);
+	assertEquals("wassup", x6.value());
         
     }
 
