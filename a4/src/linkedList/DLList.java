@@ -1,6 +1,6 @@
 package linkedList;
-/*  Name(s): Pratyush Sudhakar
- * Netid(s): ps2245
+/*  Name(s): Pratyush Sudhakar, Aditya Syam
+ * Netid(s): ps2245, as2839
  * What I thought about this assignment:
  * This assignment was a very useful introduction to linked lists and helped us practice working with them.
  */
