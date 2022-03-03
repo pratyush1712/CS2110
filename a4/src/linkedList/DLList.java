@@ -2,8 +2,7 @@ package linkedList;
 /*  Name(s): Pratyush Sudhakar
  * Netid(s): ps2245
  * What I thought about this assignment:
- *
- *
+ * This assignment was a very useful introduction to linked lists and helped us practice working with them.
  */
 
 /** An instance is a doubly linked list. */
@@ -12,7 +11,7 @@ public class DLList<E> {
      * Example: for 3 hours 15 minutes, use 3.25<br>
      * Example: for 4 hours 30 minutes, use 4.50<br>
      * Example: for 5 hours, use 5 or 5.0 */
-    public static double timeSpent= -1;
+    public static double timeSpent= 5;
 
     /** Number of values in the list. */
     private int size;
@@ -133,6 +132,8 @@ public class DLList<E> {
         // For example, if k < size/2, search from the beginning of the
         // list, otherwise search from the end of the list. If k = size/2,
         // search from either end; it doesn't matter.
+        assert 0 <= k && k < size;
+
         if (k < size / 2) {
             var node= head;
             for (int i= 0; i < k; i++ ) {
@@ -154,6 +155,7 @@ public class DLList<E> {
      * and v is 1, the list is changed to [3, 1, 8, 2] */
     public void insertAfter(Node n, E v) {
         // TODO 5. Make sure this method takes constant time.
+ 
         if (n != tail) {
             Node nOne= new Node(n, v, n.next);
             n.next = nOne;
@@ -175,6 +177,8 @@ public class DLList<E> {
     public void delete(Node n) {
         // TODO 6. Make sure this method takes constant time.
 
+        assert n != null;
+        
         (n.prev).next= n.next;
         (n.next).prev= n.prev;
     }
