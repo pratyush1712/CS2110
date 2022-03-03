@@ -182,6 +182,7 @@ public class DLList<E> {
         
         (n.prev).next= n.next;
         (n.next).prev= n.prev;
+        size = size-1;
     }
 
     /*********************/
