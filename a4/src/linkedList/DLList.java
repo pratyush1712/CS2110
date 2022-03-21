@@ -1,9 +1,8 @@
 package linkedList;
-/*  Name(s): Pratyush Sudhakar
- * Netid(s): ps2245
+/*  Name(s): Pratyush Sudhakar, Aditya Syam
+ * Netid(s): ps2245, as2839
  * What I thought about this assignment:
- *
- *
+ * This assignment was a very useful introduction to linked lists and helped us practice working with them.
  */
 
 /** An instance is a doubly linked list. */
@@ -12,7 +11,7 @@ public class DLList<E> {
      * Example: for 3 hours 15 minutes, use 3.25<br>
      * Example: for 4 hours 30 minutes, use 4.50<br>
      * Example: for 5 hours, use 5 or 5.0 */
-    public static double timeSpent= -1;
+    public static double timeSpent= 5;
 
     /** Number of values in the list. */
     private int size;
@@ -77,12 +76,12 @@ public class DLList<E> {
         // E is String and values are the empty string.
         // You can't test this fully until #2, append, is written.
 
-        var res = new StringBuilder("[");
-        var n = tail;
-        while (n!=null) {
+        var res= new StringBuilder("[");
+        var n= tail;
+        while (n != null) {
             res.append(n.val);
-            n = n.prev;
-            if (n!=null) res.append(", ");
+            n= n.prev;
+            if (n != null) res.append(", ");
         }
         return res + "]";
     }
@@ -94,16 +93,16 @@ public class DLList<E> {
         // TODO 2. After writing append, test append and toStringRev
         // thoroughly before starting on the next. These two must be correct
         // in order to be able to write and test all the others.
-        Node nOne = new Node(tail, v, null);
-        if (size==0) {
-            head = nOne;
-            tail = nOne;
-            size++;
-        }
-        else {
-            tail.next = nOne;
-            tail = nOne;
-            size++;
+        if (size == 0) {
+            Node nOne= new Node(null, v, null);
+            head= nOne;
+            tail= nOne;
+            size++ ;
+        } else {
+            Node nOne= new Node(tail, v, null);
+            tail.next= nOne;
+            tail= nOne;
+            size++ ;
         }
     }
 
@@ -112,9 +111,17 @@ public class DLList<E> {
      * E.g. if the list is [8, 7, 4], prepend(2) changes this list to [2, 8, 7, 4]. */
     public void prepend(E v) {
         // TODO 3. Write and test prepend thoroughly before moving on to TODO 4
-        Node nOne = new Node(null, v, head);
-        head.prev = nOne;
-        head = nOne;
+        if (size == 0) {
+            Node nOne= new Node(null, v, null);
+            head= nOne;
+            tail= nOne;
+            size++ ;
+        } else {
+            Node nOne= new Node(null, v, head);
+            head.prev= nOne;
+            head= nOne;
+            size++ ;
+        }
     }
 
     /** = node number k. <br>
@@ -125,16 +132,18 @@ public class DLList<E> {
         // For example, if k < size/2, search from the beginning of the
         // list, otherwise search from the end of the list. If k = size/2,
         // search from either end; it doesn't matter.
-        if (k <= size/2) {
-            var node = head;
-            for (int i = 0; i <= k; i++) {
-                node=node.next;
+        assert 0 <= k && k < size;
+
+        if (k < size / 2) {
+            var node= head;
+            for (int i= 0; i < k; i++ ) {
+                node= node.next;
             }
             return node;
         }
-        var node=tail;
-        for (int i = 0; i<(size-k);i++) {
-            node = node.prev;
+        var node= tail;
+        for (int i= 0; i < (size - k-1); i++ ) {
+            node= node.prev;
         }
         return node;
     }
@@ -142,13 +151,23 @@ public class DLList<E> {
     /** Insert value v in a new node after node n. <br>
      * This operation takes constant time. <br>
      * Precondition: n must be a node of this list; it may not be null.<br>
-     * E.g. if the list is [3, 8, 2] and n points to the node with 8 in it, <br>
+     * E.g. if the list is [3, 8, 2] and n points to the node with 3 in it, <br>
      * and v is 1, the list is changed to [3, 1, 8, 2] */
-    public void insertBefore(Node n, E v) {
+    public void insertAfter(Node n, E v) {
         // TODO 5. Make sure this method takes constant time.
-        Node nOne = new Node(n.prev, v, n);
-        (n.prev).next = nOne;
-        n.prev = nOne;
+        assert n != null;
+        
+        if (n != tail) {
+            Node nOne= new Node(n, v, n.next);
+            n.next = nOne;
+            (nOne.next).prev = nOne;
+            size++ ;
+        } else {
+            Node nOne= new Node(tail, v, null);
+            tail.next= nOne;
+            tail= nOne;
+            size++ ;
+        }
     }
 
     /** Remove node n from this list. <br>
@@ -159,8 +178,11 @@ public class DLList<E> {
     public void delete(Node n) {
         // TODO 6. Make sure this method takes constant time.
 
-        (n.prev).next = n.next;
-        (n.next).prev = n.prev;
+        assert n != null;
+        
+        (n.prev).next= n.next;
+        (n.next).prev= n.prev;
+        size = size-1;
     }
 
     /*********************/
