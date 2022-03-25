@@ -1,7 +1,7 @@
 package a5;
 /* NetId(s): ps2245, as2839
 
- * Name(s): David Gries
+ * Name(s): Pratyush Sudhakar, Aditya Syam
  * What I thought about this assignment:
  *
  *
