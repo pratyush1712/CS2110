@@ -3,7 +3,7 @@ package a5;
 
  * Name(s): Pratyush Sudhakar, Aditya Syam
  * What I thought about this assignment:
- * Bada boom Bada boom Bada Bada Bada boom;
+ * This assignment was a nice introduction to trees and recursion in trees;
  *
  */
 
@@ -12,6 +12,7 @@ import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
+import static java.lang.Math.min;
 
 /** Important notes 1. Remember that a variable declared as: CovidTree ct; <br>
  * can be viewed in two ways. <br>
@@ -57,7 +58,7 @@ public class CovidTree {
      * Example: for 3 hours 15 minutes, use 3.25<br>
      * Example: for 4 hours 30 minutes, use 4.50<br>
      * Example: for 5 hours, use 5 or 5.0 */
-    public static double timeSpent= 7;
+    public static double timeSpent= -1;
 
     /** The String to be used as a separator in toString() */
     public static final String SEPARATOR= " - ";
@@ -294,7 +295,7 @@ public class CovidTree {
         // 4. Base Case: The root of this CovidTree is c; i.e. the Route is just [c].
 
         // State whether this is a searching or a counting method:
-
+        // This is a searching method
         if (c == human()) {
             List<Human> list= new LinkedList<>();
             list.add(c);
@@ -353,19 +354,14 @@ public class CovidTree {
          * You have a problem of writing this loop efficiently. You can't use a foreach loop
          * on both lists simultaneously. The simplest thing to do is to use List's
          * function toArray and work with the array representations of the lists. */
-        if (child1==child2) return child1;
-        List<Human> child1list = CovidRouteTo(child1);
-        List<Human> child2list = CovidRouteTo(child2);
-        Object[] child1array = CovidRouteTo(child1).toArray();
-        Object[] child2array = CovidRouteTo(child2).toArray();
-        if (child1list.contains(child2)) return child2;
-        if (child2list.contains(child1)) return child1;
-        for (int i = 0; i<child1array.length;i++) {
-            if ((child1array[i] != child2array[i])) {
-                return (Human) child1array[i-1];
-            }
+        if (child1 == null || child2 == null || !contains(child1) || !contains(child2)) return null;
+        Object[] child1array= CovidRouteTo(child1).toArray();
+        Object[] child2array= CovidRouteTo(child2).toArray();
+        int len= min(child1array.length, child2array.length);
+        for (int i= 0; i < len; i++ ) {
+            if ((child1array[i] != child2array[i])) { return (Human) child1array[i - 1]; }
         }
-        return null;
+        return (child1array.length < child2array.length) ? child1 : child2;
     }
 
     /** Return true iff this is equal to ob.<br>
@@ -415,10 +411,10 @@ public class CovidTree {
         // Second, A child of one tree cannot equal more than one child of
         // tree because the names of Human's are all unique; there are no duplicates.
         if (ob == null) return false;
-        if (ob.getClass()!=getClass()) return false;
-        CovidTree object = (CovidTree) ob;
-        if (human()!=object.human()) return false;
-        if (childrenSize()!=object.childrenSize()) return false;
+        if (ob.getClass() != getClass()) return false;
+        CovidTree object= (CovidTree) ob;
+        if (human() != object.human()) return false;
+        if (childrenSize() != object.childrenSize()) return false;
         for (CovidTree t : children) {
             if (!isInSet(t, object.children)) return false;
         }
@@ -428,11 +424,11 @@ public class CovidTree {
     /** Return true iff t is in s. */
     public static boolean isInSet(CovidTree t, Set<CovidTree> s) {
         // You don't have to write this method if you don't want to use it.
-        int sum=0;
+        int sum= 0;
         for (CovidTree dt : s) {
-            if (t.equals(dt)) sum++;
+            if (t.equals(dt)) sum++ ;
         }
-        return (sum!=1)?false:true;
+        return (sum != 1) ? false : true;
     }
 
     /* ========================================================================

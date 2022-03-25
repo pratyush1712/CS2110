@@ -250,8 +250,10 @@ public class CovidTreeTest {
         st.insert(humanL, humanJ);
         var route2 = st.CovidRouteTo(humanC);
         var route3 = st.CovidRouteTo(humanJ);
+        var route4 = st.CovidRouteTo(humanD);
         assertEquals("[B, C]", getNames(route2));
-        assertEquals("[B, C, L, J]", getNames(route3));        
+        assertEquals("[B, C, L, J]", getNames(route3)); 
+        assertEquals(null, route4);
     }
 
     /** Return the names of Humans in sp, separated by ", " and delimited by [ ]. <br>
@@ -274,9 +276,11 @@ public class CovidTreeTest {
         var p= st.commonAncestor(humanC, humanC);
         var q= st.commonAncestor(humanB, humanC);
         var r = st1.commonAncestor(humanE, humanJ);
+        var s = st.commonAncestor(humanJ, humanK);
         assertEquals(humanC, p);
         assertEquals(humanB, q);
         assertEquals(humanB, r);
+        assertEquals(null, s);
 
         // Write more test cases. You can use the tree that makeTree(1) returns.
 
