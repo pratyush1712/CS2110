@@ -1,5 +1,5 @@
 package a5;
-/* NetId(s): djg17
+/* NetId(s): ps2245, as2839
 
  * Name(s): David Gries
  * What I thought about this assignment:
@@ -56,7 +56,7 @@ public class CovidTree {
      * Example: for 3 hours 15 minutes, use 3.25<br>
      * Example: for 4 hours 30 minutes, use 4.50<br>
      * Example: for 5 hours, use 5 or 5.0 */
-    public static double timeSpent= -1;
+    public static double timeSpent= 7;
 
     /** The String to be used as a separator in toString() */
     public static final String SEPARATOR= " - ";
