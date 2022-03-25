@@ -176,6 +176,13 @@ public class CovidTreeTest {
 
         var st= new CovidTree(humanC);
         assertEquals(1, st.size());
+        st.insert(humanC, humanA);
+        assertEquals(2, st.size());
+        st.insert(humanC, humanB);
+        st.insert(humanC, humanD);
+        st.insert(humanC, humanE);
+        st.insert(humanE, humanF);
+        assertEquals(6, st.size());
 
     }
 
@@ -188,7 +195,9 @@ public class CovidTreeTest {
          */
         var st= new CovidTree(humanC);
         assertEquals(true, st.contains(humanC));
-
+        assertEquals(false, st.contains(humanA));
+        st.insert(humanC, humanA);
+        assertEquals(true, st.contains(humanA));
     }
 
     /** */
@@ -201,8 +210,12 @@ public class CovidTreeTest {
         var st= new CovidTree(humanB);
         st.insert(humanB, humanC);
         st.insert(humanC, humanD);
+        st.insert(humanC, humanE);
         assertEquals(0, st.depth(humanB));
-
+        assertEquals(1, st.depth(humanC));
+        assertEquals(2, st.depth(humanD));
+        assertEquals(2, st.depth(humanE));
+        assertEquals(-1, st.depth(humanF));
     }
 
     /** */
@@ -210,8 +223,13 @@ public class CovidTreeTest {
     public void test5WidthAtDepth() {
         // We give you ONE test case. You write more.
         var st= new CovidTree(humanB);
+        st.insert(humanB, humanC);
+        st.insert(humanB, humanA);
+        st.insert(humanB, humanD);
+        st.insert(humanC, humanF);
         assertEquals(1, st.widthAtDepth(0));
-
+        assertEquals(3, st.widthAtDepth(1));
+        assertEquals(1, st.widthAtDepth(2));
     }
 
     @SuppressWarnings("javadoc")
@@ -223,7 +241,17 @@ public class CovidTreeTest {
         var st= new CovidTree(humanB);
         var route= st.CovidRouteTo(humanB);
         assertEquals("[B]", getNames(route));
-
+        st.insert(humanB, humanC);
+        st.insert(humanB, humanA);
+        st.insert(humanB, humanF);
+        st.insert(humanC, humanG);
+        st.insert(humanC, humanL);
+        st.insert(humanA, humanK);
+        st.insert(humanL, humanJ);
+        var route2 = st.CovidRouteTo(humanC);
+        var route3 = st.CovidRouteTo(humanJ);
+        assertEquals("[B, C]", getNames(route2));
+        assertEquals("[B, C, L, J]", getNames(route3));        
     }
 
     /** Return the names of Humans in sp, separated by ", " and delimited by [ ]. <br>
@@ -241,9 +269,14 @@ public class CovidTreeTest {
     @Test
     public void test7commonAncestor() {
         var st= new CovidTree(humanB);
+        var st1 = makeTree1();
         st.insert(humanB, humanC);
         var p= st.commonAncestor(humanC, humanC);
+        var q= st.commonAncestor(humanB, humanC);
+        var r = st1.commonAncestor(humanE, humanJ);
         assertEquals(humanC, p);
+        assertEquals(humanB, q);
+        assertEquals(humanB, r);
 
         // Write more test cases. You can use the tree that makeTree(1) returns.
 
@@ -275,7 +308,16 @@ public class CovidTreeTest {
         var treeB2= new CovidTree(humanB);
         assertEquals(true, treeB1.equals(treeB1));
         assertEquals(true, treeB1.equals(treeB2));
-
+        treeB2.insert(humanB, humanC);
+        assertEquals(false, treeB1.equals(treeB2));
+        treeB1.insert(humanB, humanC);
+        assertEquals(true, treeB1.equals(treeB2));
+        treeB1.insert(humanC, humanD);
+        treeB2.insert(humanC, humanD);
+        assertEquals(true, treeB1.equals(treeB2));
+        treeB1.insert(humanD, humanF);
+        treeB2.insert(humanD, humanJ);
+        assertEquals(false, treeB1.equals(treeB2));   
     }
 
     /* Make a tree like makeTree1 except that use humanK instead of humanH*/

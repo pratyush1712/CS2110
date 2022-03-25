@@ -1,14 +1,15 @@
 package a5;
-/* NetId(s): djg17
+/* NetId(s): ps2245, as2839
 
- * Name(s): David Gries
+ * Name(s): Pratyush Sudhakar, Aditya Syam
  * What I thought about this assignment:
- *
+ * Bada boom Bada boom Bada Bada Bada boom;
  *
  */
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
@@ -146,8 +147,15 @@ public class CovidTree {
         // Use method node(), above, and use no methods that are below.
         // DO NOT traverse the tree twice looking for the same node
         // --don't duplicate work.
-
-        throw new UnsupportedOperationException();
+        if (p == null || c == null) {
+            throw new IllegalArgumentException("The fuck you doing man");
+        }
+        if (node(c) != null) { throw new IllegalArgumentException("Gaand Mara bhen ke lode"); }
+        CovidTree tree= node(p);
+        if (tree == null) { throw new IllegalArgumentException("The fuck you doing man"); }
+        CovidTree child= new CovidTree(c);
+        tree.children.add(child);
+        return child;
     }
 
     /** = the number of nodes in this CovidTree. <br>
@@ -155,8 +163,11 @@ public class CovidTree {
     public int size() {
         // TODO 2. This method must be recursive.
         // State whether this is a searching or a counting method:
-
-        throw new UnsupportedOperationException();
+        // This method is counting
+        if (childrenSize() == 0) return 1;
+        int sum= 1;
+        for (CovidTree dt : children) { sum+= dt.size(); }
+        return sum;
     }
 
     /** = "this Covid tree contains a node with human p." */
@@ -169,11 +180,11 @@ public class CovidTree {
         //
         // If you write this recursively,
         // state whether this is a searching or a counting method:
+        // This function uses recursion: a searching method
         //
         // Recursive definition: This CovidTree contains p iff the human in this
         // CovidTree node is p or if one of this node's children contains p.
-
-        throw new UnsupportedOperationException();
+        return node(p) != null;
     }
 
     /** = the depth at which p occurs in this CovidTree, or <br>
@@ -189,12 +200,18 @@ public class CovidTree {
         // Study the two tutorials on processing recursive calls and use the
         // correct pattern here.
         // State whether this is a searching or a counting method:
-
+        // This is a counting method
         // Here is recursive insight:
         // ... Let child c of the root contain p.
         // ... Then the depth of p in the root = (1 + depth of p in c)
-
-        throw new UnsupportedOperationException();
+        if (human() == p) return 0;
+        int sum= 0;
+        for (CovidTree dt : children) {
+            if (dt.depth(p) > -1) {
+                sum+= dt.depth(p) + 1;
+            }
+        }
+        return (sum > 0) ? sum : -1;
     }
 
     /** Return the width of this tree at depth d <br>
@@ -223,13 +240,18 @@ public class CovidTree {
         // the tree, causing the tree to be traversed more than once.
 
         // State whether this is a searching or a counting method:
-
+        // This is a counting method
         // Use this recursive definition:
         // ..... If d = 0, the answer is 1.
         // ..... If d > 0, the answer is: sum of widths of the children at depth d-1.
 
-        throw new UnsupportedOperationException();
-
+        if (d < 0) throw new IllegalArgumentException("Bhoshdike laude gaand maraa kamine");
+        if (d == 0) return 1;
+        int sum= 0;
+        for (CovidTree dt : children) {
+            sum+= dt.widthAtDepth(d - 1);
+        }
+        return sum;
     }
 
     /** Return the route Covid took to get from "here" (the root of <br>
@@ -273,7 +295,19 @@ public class CovidTree {
 
         // State whether this is a searching or a counting method:
 
-        throw new UnsupportedOperationException();
+        if (c == human()) {
+            List<Human> list= new LinkedList<>();
+            list.add(c);
+            return list;
+        }
+        for (CovidTree dt : children) {
+            List<Human> child= dt.CovidRouteTo(c);
+            if (child != null) {
+                child.add(0, human());
+                return child;
+            }
+        }
+        return null;
     }
 
     /** If either child1 or child2 is null or is not in this CovidTree, return null.<br>
@@ -319,8 +353,19 @@ public class CovidTree {
          * You have a problem of writing this loop efficiently. You can't use a foreach loop
          * on both lists simultaneously. The simplest thing to do is to use List's
          * function toArray and work with the array representations of the lists. */
-
-        throw new UnsupportedOperationException();
+        if (child1==child2) return child1;
+        List<Human> child1list = CovidRouteTo(child1);
+        List<Human> child2list = CovidRouteTo(child2);
+        Object[] child1array = CovidRouteTo(child1).toArray();
+        Object[] child2array = CovidRouteTo(child2).toArray();
+        if (child1list.contains(child2)) return child2;
+        if (child2list.contains(child1)) return child1;
+        for (int i = 0; i<child1array.length;i++) {
+            if ((child1array[i] != child2array[i])) {
+                return (Human) child1array[i-1];
+            }
+        }
+        return null;
     }
 
     /** Return true iff this is equal to ob.<br>
@@ -369,16 +414,25 @@ public class CovidTree {
         // return false if you don't.)
         // Second, A child of one tree cannot equal more than one child of
         // tree because the names of Human's are all unique; there are no duplicates.
-
-        throw new UnsupportedOperationException();
-
+        if (ob == null) return false;
+        if (ob.getClass()!=getClass()) return false;
+        CovidTree object = (CovidTree) ob;
+        if (human()!=object.human()) return false;
+        if (childrenSize()!=object.childrenSize()) return false;
+        for (CovidTree t : children) {
+            if (!isInSet(t, object.children)) return false;
+        }
+        return true;
     }
 
     /** Return true iff t is in s. */
     public static boolean isInSet(CovidTree t, Set<CovidTree> s) {
         // You don't have to write this method if you don't want to use it.
-
-        throw new UnsupportedOperationException();
+        int sum=0;
+        for (CovidTree dt : s) {
+            if (t.equals(dt)) sum++;
+        }
+        return (sum!=1)?false:true;
     }
 
     /* ========================================================================
