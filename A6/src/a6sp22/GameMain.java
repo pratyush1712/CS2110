@@ -2,9 +2,11 @@ package a6sp22;
 
 /*
  * NetId(s): as2839, ps2245
- * Time spent: 05 hours, 00 minutes
+ * Time spent: 04 hours, 69 minutes
  * What I thought about this assignment:
- * Mast Bakwaas
+ * JATHAK PATHAK FATHAK LATHAK GATHAK MATHAK SATHAK CHATAK 
+ * URI URI JAAYE URI URI JAAYE
+ * 
  */
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
@@ -27,6 +29,7 @@ import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
 import javax.swing.SwingConstants;
@@ -237,6 +240,10 @@ public class GameMain {
             out.println(score);
         } catch (IOException e) {  
             // Handle exception `e`  
+            JOptionPane.showMessageDialog(frame,
+                e.getLocalizedMessage(),
+                e.toString(),
+                JOptionPane.ERROR_MESSAGE);
         }
         return;
     }
