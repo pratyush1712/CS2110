@@ -1,11 +1,11 @@
 
 package path;
 
-/* NetId(s):
+/* NetId(s): ps2245, as2839
 
- * Name(s):
- * What I thought about this assignment:
- *
+ * Name(s): Pratyush Sudhakar, Aditya Syam
+ * What I thought about this assignment: This assignment was a good way to get acquainted with the shortest path algorithm.
+ * 
  *
  */
 
@@ -23,7 +23,7 @@ public class Path {
      * Example: for 3 hours 15 minutes, use 3.25<br>
      * Example: for 4 hours 30 minutes, use 4.50<br>
      * Example: for 5 hours, use 5 or 5.0 */
-    public static double timeSpent= -1;
+    public static double timeSpent= 3;
 
     /** = the shortest path from node v to node end <br>
      * ---or the empty list if a path does not exist. <br>
@@ -41,6 +41,29 @@ public class Path {
         // Put in a declaration of the HashMap here, with a suitable name
         // for it and a suitable definition of its meaning --what it contains,
         // etc. See Section 10 point 4 of the A7 handout for help.
+        F.insert(v, 0);
+        var suitableName = new HashMap<Node, Info>();
+        suitableName.put(v, new Info(0, null));
+        
+        while (F.size() != 0) {
+            Node f= F.poll();
+            if (f.equals(end)) { return pathToEnd(suitableName, end); }
+            for (Edge e : f.exits()) {
+                Node w= e.other(f);
+                int weight= e.length;
+                int fDist= suitableName.get(f).dist;
+                if (!suitableName.containsKey(w)) {
+                    suitableName.put(w, new Info(fDist + weight, f));
+                    F.insert(w, fDist + weight);
+
+                } else if (fDist + weight < suitableName.get(w).dist) {
+                    Info wInfo= suitableName.get(w);
+                    wInfo.dist= fDist + weight;
+                    wInfo.bkptr= f;
+                    F.changePriority(w, fDist + weight);
+                }
+            }
+        }
 
         // Put all your code before this comment. Do not change this comment or return statement
         // no path from v to end.
